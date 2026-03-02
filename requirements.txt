@@ -12,10 +12,14 @@ joblib
 # Frequent Pattern Mining
 mlxtend
 
-# API
+# API & HTTP
 fastapi
-uvicorn
+uvicorn[standard]
 pydantic
+httpx
+
+# Statistics & Testing
+scipy
 
 # Data Storage
 pyarrow
@@ -26,7 +30,6 @@ matplotlib
 seaborn
 
 # Utilities
-pathlib
 python-dotenv
 tqdm
 

@@ -37,3 +37,10 @@ models/*.txt
 .idea/
 
 data/features/*.parquet
+
+# Internal working files — not for judges
+prompt.txt
+whatwewant.md
+audit.md
+Evaluation Criteria - Problem Statement 2.md
+Cart Super Add-On (CSAO) Rail Recommendation System - Problem Statement.md

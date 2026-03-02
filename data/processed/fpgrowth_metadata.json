@@ -1,0 +1,11 @@
+{
+  "mining_time_seconds": 4.725254535675049,
+  "segments_mined": 27,
+  "total_patterns": 411,
+  "candidate_gen_p95_ms": 0.01455545425415038,
+  "before_p95_ms": 118.77,
+  "latency_reduction_percent": 99.98774483939198,
+  "support_threshold": 0.002,
+  "target_latency_ms": 50,
+  "passes_target": true
+}

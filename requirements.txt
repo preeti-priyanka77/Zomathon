@@ -1,2 +1,36 @@
+# Core Data
 pandas
-Faker
+numpy
+faker
+
+# Machine Learning
+scikit-learn
+lightgbm
+xgboost
+joblib
+
+# Frequent Pattern Mining
+mlxtend
+
+# API
+fastapi
+uvicorn
+pydantic
+
+# Data Storage
+pyarrow
+fastparquet
+
+# Visualization
+matplotlib
+seaborn
+
+# Utilities
+pathlib
+python-dotenv
+tqdm
+
+# Jupyter
+jupyter
+ipykernel
+notebook

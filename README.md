@@ -8,7 +8,7 @@
 
 ---
 
-## 🏆 Results at a Glance
+## Results at a Glance
 
 | Metric | Value |
 |---|---|
@@ -18,8 +18,8 @@
 | **Recall@8** | **computed by `python src/evaluate.py`** |
 | **vs Baseline NDCG lift** | **+184.0%** |
 | **vs Baseline Precision lift** | **+157.1%** |
-| **API P95 Latency (online)** | **14.72 ms** ✅ — **20× faster than the 300ms SLA** |
-| **API P99 Latency (online)** | **16.91 ms** ✅ — 17× within budget |
+| **API P95 Latency (online)** | **14.72 ms** — **20× faster than the 300ms SLA** |
+| **API P99 Latency (online)** | **16.91 ms** — 17× within budget |
 | **Server-side P95** | **7.35 ms** |
 | **Production est. P95 (with Redis + network)** | **~35 ms** — 8× within SLA |
 | **Error rate** | **0 / 500 requests** |
@@ -582,8 +582,8 @@ NDCG lift = +184%  →  +22.1% AOV lift  (10pp NDCG ≈ 1.2pp AOV, food-delivery
   Latency (ms)   0        5       10       15      300ms SLA
                  |        |        |        |           |
   P50  ████████████ 8.28ms                              |
-  P95  ████████████████████████ 14.72ms ✅             |
-  P99  ████████████████████████████ 16.91ms ✅         |
+  P95  ████████████████████████ 14.72ms                 |
+  P99  ████████████████████████████ 16.91ms             |
   SLA  ─────────────────────────────────────────────── 300ms
 ```
 
@@ -614,8 +614,8 @@ Each `/recommend` call flows through the following stages. Times are measured/es
  │ ⑤ Serialise + Response   │   ~1 ms  │ JSON, 8 items ~1.2 KB payload          │
  │ ⑥ Network egress         │   ~5 ms  │ Response back to client                │
  ├──────────────────────────┼──────────┼────────────────────────────────────────┤
- │ TOTAL (production est.)  │  ~31 ms  │ 9× within 300ms SLA ✅                 │
- │ TOTAL (localhost bench)  │  9.92 ms │ 30× within 300ms SLA ✅                │
+ │ TOTAL (production est.)  │  ~31 ms  │ 9× within 300ms SLA                    │
+ │ TOTAL (localhost bench)  │  9.92 ms │ 30× within 300ms SLA                   │
  └──────────────────────────┴──────────┴────────────────────────────────────────┘
 ```
 

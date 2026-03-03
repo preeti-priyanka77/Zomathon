@@ -4,7 +4,6 @@
 
 - **Project Type:** Real-time Learning-to-Rank Recommendation System
 - **Domain:** Food Delivery / Dynamic Cart Intelligence
-- **Version:** v2.0 (Enhanced Multi-Segment Architecture)
 
 ---
 
@@ -65,7 +64,7 @@ python src/cart_transition_demo.py
 
 CSAO is a production-ready, multi-segment, low-latency add-on recommendation system designed for dynamic shopping carts.
 
-Unlike simple co-occurrence recommenders, v2.0 incorporates:
+Unlike simple co-occurrence recommenders, this incorporates:
 
 - City-tier purchasing power modeling
 - State-level cuisine biases

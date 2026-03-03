@@ -170,14 +170,12 @@ display positions in a recommendation rail.
 A pointwise binary classification model would minimise log-loss over individual
 item-order pairs, but would not distinguish between a correct item ranked 1st
 versus ranked 8th. In the CSAO rail, display position directly impacts click
-probability (well-modelled by a position-0.5 power-law decay
-\cite{joachims2017, craswell2008}). LambdaRank's gradient updates directly
+probability (well-modelled by a position-0.5 power-law decay). LambdaRank's gradient updates directly
 incorporate NDCG changes, making it strictly preferable for this objective.
 
 \subsection{Why Not Sequential Models}
 
-A sequential recommendation model (e.g., SASRec \cite{kang2018self}, BERT4Rec
-\cite{sun2019bert4rec}) could capture richer temporal dependencies in user
+A sequential recommendation model (e.g., SASRec, BERT4Rec) could capture richer temporal dependencies in user
 purchase histories. However, such models require:
 \begin{enumerate}
   \item Substantially more data per user to learn meaningful sequence embeddings
@@ -252,16 +250,14 @@ probabilities are clamped to $[0.05, 0.90]$.
 Delivery fee incentivises cart expansion. If $\text{delivery\_fee} \geq
 \text{\rupee}60$ and $\text{subtotal} < \text{\rupee}600$, users add an extra
 item with probability 0.65, mimicking the real-world ``free delivery
-threshold'' effect documented in food delivery literature
-\cite{ailawadi2014, chintagunta2012}.
+threshold'' effect documented in food delivery literature.
 
 \subsection{Summary Statistics}
 
 After preprocessing, key dataset properties that validate realism:
 \begin{itemize}
   \item \textbf{76\% inactive users} (no order in last 30 days) -----
-        consistent with typical 20--25\% monthly retention in Indian food
-        delivery \cite{euromonitor2024}
+        consistent with typical 20--25\% monthly retention in Indian food delivery
   \item \textbf{23 new users} ($<$7 days tenure) in the feature table,
         providing cold-start test cases
   \item \textbf{Price range}: \rupee95.91 -- \rupee680.56 per item across tiers
@@ -374,7 +370,7 @@ the 300\,ms end-to-end SLA:
 
 \subsection{Stage 1: Segment-Aware FP-Growth Candidate Generation}
 
-Frequent Pattern Growth (FP-Growth) \cite{han2000mining} is applied to the
+Frequent Pattern Growth (FP-Growth) is applied to the
 training transaction set to extract item co-occurrence rules, segmented by
 the joint key $(\text{city\_tier}, \text{season}, \text{zone\_type})$, yielding
 27 disjoint segment tables. For each cart item, the system retrieves the top
@@ -397,7 +393,7 @@ pre-indexed Redis, this reduces to $\sim$2\,ms.
 
 \subsubsection{Model Configuration}
 
-LightGBM \cite{ke2017lightgbm} is trained with the following hyperparameter
+LightGBM is trained with the following hyperparameter
 configuration, selected via grid search over
 $\{\text{lr} \in \{0.01, 0.05, 0.1\}\}$,
 $\{\text{depth} \in \{4, 6, 8\}\}$,
@@ -445,8 +441,7 @@ XGBoost (pairwise) & LightGBM is 2--5$\times$ faster to train on our
   NDCG@$K$ vs.\ pointwise objective \\
 \addlinespace
 Neural Ranking (DNN) & 50--200\,ms inference violates the 300\,ms SLA;
-  tabular data with $<$100 features is a known LightGBM sweet spot
-  \cite{grinsztajn2022tree} \\
+  tabular data with $<$100 features is a known LightGBM sweet spot \\
 \addlinespace
 Two-Tower (ANN retrieval) & Appropriate at Uber/Zomato-scale embedding
   lookups; overkill when candidate pool is already $\leq$50 items \\
@@ -809,7 +804,7 @@ business outcomes. We provide two independent translation paths:
 
 The 20\% incremental fraction follows industry convention: 15--25\% of
 accepted add-on recommendations represent genuinely new purchases not
-otherwise made \cite{jannach2019measuring, linden2003amazon}.
+otherwise made.
 
 \subsubsection{Path 2: NDCG-Calibrated (Industry Benchmark)}
 
@@ -819,7 +814,7 @@ otherwise made \cite{jannach2019measuring, linden2003amazon}.
 \end{equation}
 
 The 10\,pp NDCG $\rightarrow$ 1.2\,pp AOV calibration is derived from
-published food delivery A/B test meta-analyses \cite{mcinerney2018explore}.
+published food delivery A/B test meta-analyses.
 
 \subsubsection{Conservative Estimate and Revenue Projection}
 
@@ -906,34 +901,6 @@ FP-Growth pool cap & Recall bounded by 50-item pool & Increase pool size; trade-
 \bottomrule
 \end{tabular}
 \end{table}
-
-
-% ═══════════════════════════════════════════════════════════════════════════════
-\section{Related Work}
-% ═══════════════════════════════════════════════════════════════════════════════
-
-Add-on recommendation in e-commerce has been studied as complementary item
-recommendation \cite{mcauley2015inferring, liu2017experimental}. The canonical
-Amazon approach \cite{linden2003amazon} uses item-to-item collaborative
-filtering, which succeeds at scale but ignores cart context.
-
-Learning-to-Rank methods for recommendation are reviewed in
-\cite{shi2010list}. LambdaRank \cite{burges2010ranknet} and its LambdaMART
-variant (the precursor to LightGBM LambdaRank) are the most widely deployed
-LTR models for production recommenders \cite{joachims2017}.
-
-FP-Growth for recommendation pre-filtering is used in production at
-Alibaba \cite{zhou2019deep} and Pinterest \cite{eksombatchai2018pixie},
-though at larger scale with graph-based diffusion rather than item-count
-co-occurrence.
-
-Cold-start strategies for new users are surveyed in
-\cite{lika2014facing}. Our three-tier fallback (warm/cool/cold) is a
-pragmatic instantiation of standard practice \cite{schein2002methods}.
-
-A/B testing methodology for recommendation systems is described in
-\cite{kohavi2020trustworthy}. Our use of Welch's $t$-test with guardrail
-metrics follows the framework advocated by \cite{deng2013improving}.
 
 
 % ═══════════════════════════════════════════════════════════════════════════════

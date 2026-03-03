@@ -38,6 +38,18 @@ models/*.txt
 
 data/features/*.parquet
 
+# LaTeX build artifacts
+*.aux
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
+
 # Internal working files — not for judges
 prompt.txt
 whatwewant.md
